@@ -1,0 +1,27 @@
+---
+posted: 2022-07-02T12:16:07Z
+title: killjoy.blog
+subtitle: what even is this blog
+thumbnail: /img/what-is-killjoy/thumbnail.png
+banner: /img/banner.jpg
+---
+
+## what is killjoy?
+killjoy is a blog ran by [Jordan Gomes](https://jordangomes.com) to document my many trials and tribulations navigating the world of IT.
+
+<br/>
+
+## why a second domain for your blog?
+name looked cool 😎
+
+<br/>
+
+## are you actually going to post
+maybe ¯\\_(ツ)_/¯
+
+<br/>
+
+## wow this is cool, how did you make it?
+this website has been put together with [SvelteKit](https://kit.svelte.dev/) and [MDsveX](https://github.com/pngwn/MDsveX)
+
+the source code is also available on [GitHub](https://github.com/jordangomes/killjoy.blog)
