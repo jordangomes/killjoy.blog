@@ -1,0 +1,5 @@
+---
+title: 404 - Page Not Found
+subtitle: Uh oh, looks like this page doesn't exist
+---
+feel free to look at our new posts [here](/)
