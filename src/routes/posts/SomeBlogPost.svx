@@ -1,8 +1,0 @@
----
-posted: 2022-06-30T20:51:00.10+10:00
-title: Fuggin Post
-subtitle: this is a demo post, yeah thats right a demo post.
-img: https://picsum.photos/300/200
----
-
-This do be a post 
