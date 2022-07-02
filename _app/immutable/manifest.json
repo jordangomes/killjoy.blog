@@ -1,48 +1,59 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-2b4154ef.js",
+    "file": "start-85de5082.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
-      "_index-59d97485.js",
+      "_index-6be2d9ac.js",
       "_preload-helper-60cab3ee.js"
     ],
     "dynamicImports": [
       "src/routes/__layout.svelte",
       ".svelte-kit/runtime/components/error.svelte",
+      "src/routes/404.svx",
       "src/routes/index.svelte",
       "src/routes/posts/what-is-killjoy.svx"
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-d9f7b0ca.js",
+    "file": "pages/__layout.svelte-cc00e180.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-59d97485.js"
+      "_index-6be2d9ac.js"
     ],
     "css": [
       "assets/pages/__layout.svelte-17e13084.css"
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
-    "file": "error.svelte-6d4a10b1.js",
+    "file": "error.svelte-3e2360ab.js",
     "src": ".svelte-kit/runtime/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-59d97485.js"
+      "_index-6be2d9ac.js"
+    ]
+  },
+  "src/routes/404.svx": {
+    "file": "pages/404.svx-b0122d10.js",
+    "src": "src/routes/404.svx",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-6be2d9ac.js",
+      "_post-051c6edf.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-7e99374e.js",
+    "file": "pages/index.svelte-68ecb2f7.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_preload-helper-60cab3ee.js",
-      "_index-59d97485.js"
+      "_index-6be2d9ac.js"
     ],
     "dynamicImports": [
       "src/routes/posts/what-is-killjoy.svx"
@@ -52,21 +63,28 @@
     ]
   },
   "src/routes/posts/what-is-killjoy.svx": {
-    "file": "pages/posts/what-is-killjoy.svx-064853a4.js",
+    "file": "pages/posts/what-is-killjoy.svx-e98d83cc.js",
     "src": "src/routes/posts/what-is-killjoy.svx",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-59d97485.js"
-    ],
-    "css": [
-      "assets/pages/posts/what-is-killjoy.svx-24d1115e.css"
+      "_index-6be2d9ac.js",
+      "_post-051c6edf.js"
     ]
   },
-  "_index-59d97485.js": {
-    "file": "chunks/index-59d97485.js"
+  "_index-6be2d9ac.js": {
+    "file": "chunks/index-6be2d9ac.js"
   },
   "_preload-helper-60cab3ee.js": {
     "file": "chunks/preload-helper-60cab3ee.js"
+  },
+  "_post-051c6edf.js": {
+    "file": "chunks/post-051c6edf.js",
+    "imports": [
+      "_index-6be2d9ac.js"
+    ],
+    "css": [
+      "assets/post-9b8b5be2.css"
+    ]
   }
 }
