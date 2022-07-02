@@ -7,7 +7,7 @@ banner: /img/banner.jpg
 ---
 
 ## what is killjoy?
-killjoy is a blog ran by [Jordan Gomes](https://jordangomes.com) to document my many trials and tribulations navigating the world of IT.
+killjoy is a blog run by [Jordan Gomes](https://jordangomes.com) to document my many trials and tribulations navigating the world of IT.
 
 <br/>
 
