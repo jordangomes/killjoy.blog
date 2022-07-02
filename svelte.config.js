@@ -19,12 +19,12 @@ const config = {
 			pages: 'build',
 			assets: 'build',
 			fallback: null
-		})
-	},
+		}),
 
-	prerender: {
-		default: true
-	}
+		prerender: {
+			default: true
+		}
+	},
 };
 
 export default config;
