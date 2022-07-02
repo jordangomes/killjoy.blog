@@ -8,11 +8,11 @@
     </div>
 </article>
 
-<style>
+<style lang="scss">
     article {
         border-radius: 1rem;
         overflow: hidden;
-        background-color: #202020;
+        background-color: $background-light;
     }
     article img {
         width: 100%;
@@ -24,7 +24,7 @@
 
     article h3 {
         margin: 0px;
-        color: #ffe000;
+        color: $primary;
 
     }
     article p {

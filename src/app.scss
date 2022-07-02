@@ -1,0 +1,14 @@
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap');
+
+:root {
+    font-family: 'Fira Code', monospace;
+    letter-spacing: -0.02rem;
+    word-spacing: -0.2rem;
+    color: $text;
+}
+
+
+body {
+    background-color: $background;
+}

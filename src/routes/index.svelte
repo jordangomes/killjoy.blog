@@ -18,7 +18,7 @@ import ArticlePreview from '../components/articlepreview.svelte'
     </main>
 </div>
 
-<style>
+<style lang="scss">
 .container {
     position: relative;
     display: flex;
@@ -33,7 +33,7 @@ header {
     flex-direction: column;
     align-items: center;
     max-width: 1200px;
-    margin: 40px;
+    margin: 20px;
     border-radius: 1rem;
     overflow: hidden;
 }
@@ -51,6 +51,8 @@ main {
 }
 
 main h2 {
+    color: $primary;
+    margin: 10px;
     font-weight: 400;
     font-size: 2rem;
     letter-spacing: -0.08rem;
