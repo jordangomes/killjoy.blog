@@ -9,6 +9,11 @@
 	*/
 	let subtitle;
 
+	export /**
+	* @type {any}
+	*/
+	let banner;
+
     import Header from '../components/header.svelte'
 </script>
 
@@ -23,6 +28,11 @@
 			<h2 class="subtitle">{subtitle}</h2>
 		</div>
 	</header>
+	{#if banner }
+		<div class="banner">
+			<img src="{banner}" alt="Welcome To > killjoy_">
+		</div>
+	{/if }
 	<main>
 		<slot />
 	</main>
@@ -59,8 +69,24 @@
 		font-size: 1.3rem;
 	}
 
+	div.banner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: 1000px;
+		margin: 20px;
+		border-radius: 1rem;
+		overflow: hidden;
+	}
+
+	div.banner img {
+		width: 100%;
+	}
+
+
 	main {
 		padding: 40px;
+		padding-top: 10px;
 		width: 80%;
 		max-width: 1000px;
 	}

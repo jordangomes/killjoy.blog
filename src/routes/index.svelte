@@ -44,7 +44,7 @@
             {#each posts as { slug, metadata } }
                 <ArticlePreview 
                     slug="{slug}"
-                    img="{metadata.img}"
+                    img="{metadata.thumbnail}"
                     title="{metadata.title}"
                     subtitle="{metadata.subtitle}" />
             {/each}
