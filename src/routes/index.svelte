@@ -1,5 +1,36 @@
-<script>
-import ArticlePreview from '../components/articlepreview.svelte'
+<script lang="ts" context="module"> 
+    import ArticlePreview from '../components/articlepreview.svelte'
+
+    const allPosts = import.meta.glob('./posts/*.{md,svx}')
+    let body: Array<any> = [];
+
+    for (let path in allPosts) {
+        body.push(
+            allPosts[path]().then(({ metadata }) => {
+                let slug = path.replace("./posts/", "")
+                slug = slug.replace(".svx", "")
+                slug = slug.replace(".md", "")
+
+                return { slug, metadata };
+            })
+        )
+    }
+
+    export const load = async () => {
+        const posts = await Promise.all(body);
+
+        const sortedPosts = posts.sort((a:any, b:any) => {
+            return new Date(b.metadata.posted).getTime() - new Date(a.metadata.posted).getTime();
+        }).slice(0, 4)
+
+        return {
+            props: { posts: sortedPosts }
+        }
+    }
+</script>
+
+<script lang="ts">
+    export let posts:any
 </script>
 
 <div class="container">
@@ -10,10 +41,13 @@ import ArticlePreview from '../components/articlepreview.svelte'
     <main>
         <h2>fresh content</h2>
         <section class="article-row">
-            <ArticlePreview></ArticlePreview>
-            <ArticlePreview></ArticlePreview>
-            <ArticlePreview></ArticlePreview>
-            <ArticlePreview></ArticlePreview>
+            {#each posts as { slug, metadata } }
+                <ArticlePreview 
+                    slug="{slug}"
+                    img="{metadata.img}"
+                    title="{metadata.title}"
+                    subtitle="{metadata.subtitle}" />
+            {/each}
         </section>
     </main>
 </div>

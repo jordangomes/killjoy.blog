@@ -1,14 +1,45 @@
-<article>
-    <img src="https://picsum.photos/300/200" alt="">
-    <div class="text">
-        <h3>some blog post</h3>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed dui fermentum, luctus velit sit amet, volutpat tellus.
-        </p>
-    </div>
-</article>
+<script>
+    export /**
+    * @type {string}
+    */
+    let slug;
+
+    export /**
+    * @type {string}
+    */
+    let img;
+
+    export /**
+    * @type {string}
+    */
+    let title;
+
+    export /**
+    * @type {string}
+    */
+    let subtitle;
+</script>
+
+<a href="/posts/{slug}">
+    <article>
+        <img src="{img}" alt="">
+        <div class="text">
+            <h3>{title}</h3>
+            <p>
+                {subtitle}
+            </p>
+        </div>
+    </article>
+</a>
+
 
 <style lang="scss">
+
+    a {
+        text-decoration: none;
+        color: $text;
+    }
+
     article {
         border-radius: 1rem;
         overflow: hidden;
