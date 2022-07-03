@@ -65,7 +65,7 @@
 			</video>
 		</div>
 	{/if }
-	<main>
+	<main class="blog-content">
 		<slot />
 	</main>
 </div>
