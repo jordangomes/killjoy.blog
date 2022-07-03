@@ -17,6 +17,11 @@
 	export /**
 	* @type {any}
 	*/
+	let banner_vid;
+
+	export /**
+	* @type {any}
+	*/
 	let slug;
 
     import Header from '../components/header.svelte'
@@ -46,9 +51,18 @@
 			<h2 class="subtitle">{subtitle}</h2>
 		</div>
 	</header>
-	{#if banner }
+	{#if banner && !banner_vid }
 		<div class="banner">
 			<img src="{banner}" alt="Welcome To > killjoy_">
+		</div>
+	{/if }
+	{#if banner_vid }
+		<div class="banner">
+			<!-- svelte-ignore a11y-media-has-caption -->
+			<video loop autoplay muted>
+				<source src="{banner_vid}" type="video/mp4">
+			  	Your browser does not support the video tag.
+			</video>
 		</div>
 	{/if }
 	<main>
@@ -98,6 +112,10 @@
 	}
 
 	div.banner img {
+		width: 100%;
+	}
+
+	div.banner video {
 		width: 100%;
 	}
 
