@@ -11,6 +11,7 @@ killjoy is a blog run by [Jordan Gomes](https://jordangomes.com) to document my 
 | /src/components   | reusable svelte components                                                      |
 | /src/routes       | web index                                                                       |
 | /src/routes/posts | blog index (all .md and svx here show up on home page and posts page)           |
+| /src/templates    | page templates                                                                  |
 | /static/          | static content index                                                            |
 | /static/img/      | image folder blog posts should have their own folders here based on their slugs |
 | /static/css       | static css imports                                                              |
