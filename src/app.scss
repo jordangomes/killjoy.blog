@@ -24,3 +24,13 @@ a {
 main.blog-content p {
     line-height: 1.5rem;
 }
+
+main.blog-content img {
+    max-width: 100%;
+}
+
+main.blog-content code {
+    font-family: "Fira Code", monospace;
+    background-color: #2e2e2e;
+    padding: 0.2rem;
+}
