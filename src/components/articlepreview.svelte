@@ -41,6 +41,7 @@
     }
 
     article {
+        height: 100%;
         border-radius: 1rem;
         overflow: hidden;
         background-color: $background-light;
