@@ -12,6 +12,10 @@
         height: 60px;
     }
 
+    header a {
+        text-align: center;
+    }
+
     header img {
         height: calc(100% - 20px);
         margin: 10px;
