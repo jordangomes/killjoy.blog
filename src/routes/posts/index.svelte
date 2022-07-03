@@ -68,20 +68,6 @@
     height: 100%;
 }
 
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 1200px;
-    margin: 20px;
-    border-radius: 1rem;
-    overflow: hidden;
-}
-
-header img {
-    width: 100%;
-}
-
 main {
     display: flex;
     flex-direction: column;
@@ -109,25 +95,12 @@ main section.article-row {
 }
 
 @media only screen and (max-width: 1000px) {
-    header img {
-        transform: scale(1.5);
-    }
-
     main section.article-row {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media only screen and (max-width: 768px) {
-    header {
-        margin: 0;
-        border-radius: 0;
-    }
-
-    header img {
-        transform: scale(2);
-    }
-
     main {
         padding: 0px 20px 20px 20px;
     }
