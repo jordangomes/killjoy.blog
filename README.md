@@ -1,38 +1,29 @@
-# create-svelte
+# killjoy.blog
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+killjoy is a blog run by [Jordan Gomes](https://jordangomes.com) to document my many trials and tribulations navigating the world of IT. the website has been put together with [SvelteKit](https://kit.svelte.dev/) and [MDsveX](https://github.com/pngwn/MDsveX)
 
-## Creating a project
+![alt](./static/img/banner.jpg)
+## project structure
 
-If you're seeing this, you've probably already done this step. Congrats!
+| folder            | purpose                                                                         |
+| ----------------- | ------------------------------------------------------------------------------- |
+| /src              | project source code                                                             |
+| /src/components   | reusable svelte components                                                      |
+| /src/routes       | web index                                                                       |
+| /src/routes/posts | blog index (all .md and svx here show up on home page and posts page)           |
+| /static/          | static content index                                                            |
+| /static/img/      | image folder blog posts should have their own folders here based on their slugs |
+| /static/css       | static css imports                                                              |
+| /static/js        | static javascript imports                                                       |
 
-```bash
-# create a new project in the current directory
-npm init svelte
+## development
+How to work on this project - feel free to submit pr's or issues
+1. clone the project to your computer
+2. run `yarn install` to install the dependencies
+3. to run a local development copy run `yarn dev`
 
-# create a new project in my-app
-npm init svelte my-app
-```
 
-## Developing
+## deployment
+Only I can deploy to the official blog domain but if you fork this you'll need to edit  [./static/CNAME](./static/CNAME) and [./gh-pages.js](./gh-pages.js) to match your details.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+to deploy run `yarn build` and `yarn deploy`
