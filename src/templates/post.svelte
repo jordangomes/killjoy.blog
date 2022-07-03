@@ -14,12 +14,30 @@
 	*/
 	let banner;
 
+	export /**
+	* @type {any}
+	*/
+	let slug;
+
     import Header from '../components/header.svelte'
 </script>
 
 <svelte:head>
-	<title>killjoy - {title}</title>
+	<title>{title} - killjoy</title>
+	<meta property="og:title" content="{title}">
+	<meta property="og:description" content="{subtitle}">
+	<meta property="og:type" content="article"/>
+	<meta name="twitter:card" content="summary_large_image">
+	{#if banner }
+		<meta property="og:image" content="http://killjoy.blog{banner}">
+	{/if}
+	
+	{#if slug }
+		<meta property="og:url" content="http://killjoy.blog/posts/{slug}">
+	{/if}
+
 </svelte:head>
+
 <Header></Header>
 <div class="container">
 	<header>

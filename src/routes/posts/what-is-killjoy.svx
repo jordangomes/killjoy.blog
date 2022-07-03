@@ -2,6 +2,7 @@
 posted: 2022-07-02T12:16:07Z
 title: killjoy.blog
 subtitle: what even is this blog
+slug: what-is-killjoy
 thumbnail: /img/what-is-killjoy/thumbnail.png
 banner: /img/banner.jpg
 ---
