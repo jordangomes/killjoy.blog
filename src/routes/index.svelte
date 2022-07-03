@@ -33,6 +33,17 @@
     export let posts:any
 </script>
 
+
+<svelte:head>
+	<title>killjoy - home</title>
+	<meta property="og:title" content="killjoy.blog">
+	<meta property="og:description" content="are you ready to take the red pill">
+	<meta property="og:type" content="article"/>
+	<meta property="og:image" content="https://killjoy.blog/img/banner.jpg">
+	<meta property="og:url" content="https://killjoy.blog/">
+</svelte:head>
+
+
 <div class="container">
     <header>
         <img src="/img/banner.jpg" alt="Welcome To > killjoy_">
@@ -49,6 +60,11 @@
                     subtitle="{metadata.subtitle}" />
             {/each}
         </section>
+        <div class="all-articles">
+            <p>
+                <a href="/posts">view all posts</a>
+            </p>
+        </div>
     </main>
 </div>
 
@@ -100,6 +116,12 @@ main section.article-row {
     column-gap: 20px;
     row-gap: 20px;
 
+}
+
+main .all-articles {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 @media only screen and (max-width: 1000px) {
