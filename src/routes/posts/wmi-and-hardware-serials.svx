@@ -1,0 +1,41 @@
+---
+posted: 2022-07-03T04:28:26Z
+title: wmi and hardware serials
+subtitle: how to get hardware serial numbers from wmi using powershell
+slug: wmi-and-hardware-serials
+thumbnail: /img/wmi-and-hardware-serials/thumbnail.png
+banner: /img/wmi-and-hardware-serials/banner.jpg
+banner_vid: /img/wmi-and-hardware-serials/banner.webm
+---
+
+*Note - this method will not work for every device*
+
+## why?
+I recently had a little problem at work. During the &nbsp; *p a n d e m i c* &nbsp; we sent our staff home with brand new laptops and docks. 
+
+The problem is that due to the rush we only recorded laptop serials and missed the docks. Our team could have done the normal thing and sent emails out to everyone and got them to send us the serial numbers but staff aren't always the smartest and that would also be lame.
+
+I searched far and wide for a solution to get the USB-C dock serials remotely but alas after venturing to the second page of Google I gave up (╯‵□′)╯︵┻━┻
+
+
+## what now
+Many days went by and this problem kept taunting me; there had to be a way.
+Finally I cracked and decided to investigate this myself. 
+
+(ヘ･_･)ヘ┳━┳ 
+
+My first point of call... Device Manager
+
+
+## adventures in device manager
+<!-- swap screenshot from lenovo laptop -->
+![Screenshot of Windows Device Manager](/img/wmi-and-hardware-serials/devmgmt.jpg "Device Manager")
+
+Great... where the hell is my dock.
+
+Fortunately there is a nicer way to look for things. Just click `View > Devices by container`
+
+<!-- swap screenshot from lenovo laptop -->
+![Screenshot of Windows Device Manager](/img/wmi-and-hardware-serials/devmgmt-container-view.jpg "Device Manager")
+
+Much better
