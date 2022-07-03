@@ -29,11 +29,11 @@
 	<meta property="og:type" content="article"/>
 	<meta name="twitter:card" content="summary_large_image">
 	{#if banner }
-		<meta property="og:image" content="http://killjoy.blog{banner}">
+		<meta property="og:image" content="https://killjoy.blog{banner}">
 	{/if}
 	
 	{#if slug }
-		<meta property="og:url" content="http://killjoy.blog/posts/{slug}">
+		<meta property="og:url" content="https://killjoy.blog/posts/{slug}">
 	{/if}
 
 </svelte:head>
