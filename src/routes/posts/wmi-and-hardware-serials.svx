@@ -52,7 +52,7 @@ Cool so we know that the serial is accessible by the system somehow. I just need
 <br/>
 
 ## doing it programmatically
-![Photo of a dog on a computer captioned I have no idea what I'm doing](/img/shared-memes/noidea.jpg "noidea.jpg")
+![dog on a computer captioned I have no idea what I'm doing](/img/shared-memes/noidea.jpg "noidea.jpg")
 
 Okay Google time... "PowerShell device manager". Someone mentions WMI on Microsoft technet.
 
