@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-72e47687.js",
+    "file": "start-86cfb932.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -12,11 +12,13 @@
       ".svelte-kit/runtime/components/error.svelte",
       "src/routes/404.svx",
       "src/routes/index.svelte",
-      "src/routes/posts/what-is-killjoy.svx"
+      "src/routes/posts/index.svelte",
+      "src/routes/posts/what-is-killjoy.svx",
+      "src/routes/posts/wmi-and-hardware-serials.svx"
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-cc00e180.js",
+    "file": "pages/__layout.svelte-4818e10e.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -24,7 +26,7 @@
       "_index-6be2d9ac.js"
     ],
     "css": [
-      "assets/pages/__layout.svelte-17e13084.css"
+      "assets/pages/__layout.svelte-c95ae0f1.css"
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
@@ -37,39 +39,73 @@
     ]
   },
   "src/routes/404.svx": {
-    "file": "pages/404.svx-5f308d22.js",
+    "file": "pages/404.svx-1a196409.js",
     "src": "src/routes/404.svx",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_index-6be2d9ac.js",
-      "_post-f91dff3a.js"
+      "_post-6c236dfd.js",
+      "_header-89bc0213.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-a5d5badd.js",
+    "file": "pages/index.svelte-21d42729.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_preload-helper-60cab3ee.js",
-      "_index-6be2d9ac.js"
+      "_index-6be2d9ac.js",
+      "_articlepreview-fefd6a00.js"
     ],
     "dynamicImports": [
-      "src/routes/posts/what-is-killjoy.svx"
+      "src/routes/posts/what-is-killjoy.svx",
+      "src/routes/posts/wmi-and-hardware-serials.svx"
     ],
     "css": [
-      "assets/pages/index.svelte-c377dcac.css"
+      "assets/pages/index.svelte-895a1cc1.css"
+    ]
+  },
+  "src/routes/posts/index.svelte": {
+    "file": "pages/posts/index.svelte-713dd88f.js",
+    "src": "src/routes/posts/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_preload-helper-60cab3ee.js",
+      "_index-6be2d9ac.js",
+      "_articlepreview-fefd6a00.js",
+      "_header-89bc0213.js"
+    ],
+    "dynamicImports": [
+      "src/routes/posts/what-is-killjoy.svx",
+      "src/routes/posts/wmi-and-hardware-serials.svx"
+    ],
+    "css": [
+      "assets/pages/posts/index.svelte-27ac0a92.css"
     ]
   },
   "src/routes/posts/what-is-killjoy.svx": {
-    "file": "pages/posts/what-is-killjoy.svx-b0ad7c59.js",
+    "file": "pages/posts/what-is-killjoy.svx-2deda21b.js",
     "src": "src/routes/posts/what-is-killjoy.svx",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_index-6be2d9ac.js",
-      "_post-f91dff3a.js"
+      "_post-6c236dfd.js",
+      "_header-89bc0213.js"
+    ]
+  },
+  "src/routes/posts/wmi-and-hardware-serials.svx": {
+    "file": "pages/posts/wmi-and-hardware-serials.svx-6ac0d5dc.js",
+    "src": "src/routes/posts/wmi-and-hardware-serials.svx",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-6be2d9ac.js",
+      "_post-6c236dfd.js",
+      "_header-89bc0213.js"
     ]
   },
   "_index-6be2d9ac.js": {
@@ -78,13 +114,32 @@
   "_preload-helper-60cab3ee.js": {
     "file": "chunks/preload-helper-60cab3ee.js"
   },
-  "_post-f91dff3a.js": {
-    "file": "chunks/post-f91dff3a.js",
+  "_post-6c236dfd.js": {
+    "file": "chunks/post-6c236dfd.js",
+    "imports": [
+      "_index-6be2d9ac.js",
+      "_header-89bc0213.js"
+    ],
+    "css": [
+      "assets/post-1fa17be0.css"
+    ]
+  },
+  "_header-89bc0213.js": {
+    "file": "chunks/header-89bc0213.js",
     "imports": [
       "_index-6be2d9ac.js"
     ],
     "css": [
-      "assets/post-9b8b5be2.css"
+      "assets/header-100ca74d.css"
+    ]
+  },
+  "_articlepreview-fefd6a00.js": {
+    "file": "chunks/articlepreview-fefd6a00.js",
+    "imports": [
+      "_index-6be2d9ac.js"
+    ],
+    "css": [
+      "assets/articlepreview-815a1a13.css"
     ]
   }
 }

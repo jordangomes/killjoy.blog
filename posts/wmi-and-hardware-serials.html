@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="../favicon.png" />
+		<link rel="stylesheet" href="/css/normalize.css">
+		<link rel="stylesheet" href="/css/prism.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>wmi and hardware serials - killjoy</title><meta property="og:title" content="wmi and hardware serials" data-svelte="svelte-1110hed"><meta property="og:description" content="how to get hardware serial numbers from wmi using powershell" data-svelte="svelte-1110hed"><meta property="og:type" content="article" data-svelte="svelte-1110hed"><meta name="twitter:card" content="summary_large_image" data-svelte="svelte-1110hed"><meta property="og:image" content="https://killjoy.blog/img/wmi-and-hardware-serials/banner.jpg" data-svelte="svelte-1110hed"><meta property="og:url" content="https://killjoy.blog/posts/wmi-and-hardware-serials" data-svelte="svelte-1110hed">
+	<link rel="stylesheet" href="/_app/immutable/assets/pages/__layout.svelte-c95ae0f1.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/post-1fa17be0.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/header-100ca74d.css">
+	<link rel="modulepreload" href="/_app/immutable/start-86cfb932.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-6be2d9ac.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/preload-helper-60cab3ee.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout.svelte-4818e10e.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/posts/wmi-and-hardware-serials.svx-6ac0d5dc.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/post-6c236dfd.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/header-89bc0213.js">
+	</head>
+	<body>
+		<div>
+
+
+
+
+<header class="svelte-xlqu88"><a href="/" class="svelte-xlqu88"><img src="/KilljoyLogo.png" alt="" class="svelte-xlqu88"></a>
+</header>
+<div class="container svelte-bf73rn"><header class="svelte-bf73rn"><div class="content svelte-bf73rn"><h1 class="title svelte-bf73rn">wmi and hardware serials</h1>
+			<h2 class="subtitle svelte-bf73rn">how to get hardware serial numbers from wmi using powershell</h2></div></header>
+	
+	<div class="banner svelte-bf73rn">
+			<video loop autoplay muted class="svelte-bf73rn"><source src="/img/wmi-and-hardware-serials/banner.webm" type="video/mp4">
+			  	Your browser does not support the video tag.
+			</video></div>
+	<main class="blog-content svelte-bf73rn"><p><em>Note - this method will not work for every device</em></p>
+<h2>why?</h2>
+<p>I recently had a little problem at work. During the   <em>p a n d e m i c</em>   we sent our staff home with brand new laptops and docks. </p>
+<p>The problem is that due to the rush we only recorded laptop serials and missed the docks. Our team could have done the normal thing and sent emails out to everyone and got them to send us the serial numbers but staff aren’t always the smartest and that would also be lame.</p>
+<p>I searched far and wide for a solution to get the USB-C dock serials remotely but alas after venturing to the second page of Google I gave up (╯‵□′)╯︵┻━┻</p>
+<br>
+<h2>what now</h2>
+<p>Many days went by and this problem kept taunting me; there had to be a way.
+Finally I cracked and decided to investigate this myself. </p>
+<p>(ヘ･_･)ヘ┳━┳ </p>
+<p>My first point of call… Device Manager</p>
+<br>
+<h2>adventures in device manager</h2>
+<p>Stuff is a bit redacted here for  <em>~opsec~</em> so you may need to use your imagination a bit</p>
+<p><img src="/img/wmi-and-hardware-serials/devmgmt.png" alt="Screenshot of Windows Device Manager" title="Device Manager"></p>
+<p>Great… where the hell is my dock.</p>
+<p>Fortunately there is a nicer way to look for things. Just click <code>View &gt; Devices by container</code></p>
+<p><img src="/img/wmi-and-hardware-serials/devmgmt-container-view.png" alt="Screenshot of Windows Device Manager in Devices by container view" title="Device Manager > view > devices by container"></p>
+<p>Much better. Now we are here I can see my dock much easier. It’s showing up as USB-I2C bridge here but in previous driver versions it was actually showing up as the model of the dock. </p>
+<p>Anyway after digging through the devices and their properties I discovered that the serial number of the dock was visible in the “Last known parent” field on the USB controllers and the billboard device.</p>
+<p><img src="/img/wmi-and-hardware-serials/devmgmt-success.png" alt="Screenshot of Windows Device Manager Details tab showing my dock serial number" title="Device Manager"></p>
+<p>Cool so we know that the serial is accessible by the system somehow. I just need to work out how to do it programmatically.</p>
+<br>
+<h2>doing it programmatically</h2>
+<p><img src="/img/shared-memes/noidea.jpg" alt="dog on a computer captioned I have no idea what I'm doing" title="noidea.jpg"></p>
+<p>Okay Google time… “PowerShell device manager”. Someone mentions WMI on Microsoft technet.</p>
+<p>I know a thing or two about WMI so I think I can do this.</p>
+<h2><strong>Here are 10 WMI secrets that Microsoft don’t want you to know</strong> or something, idk I don’t work at buzzfeed.</h2>
+<ol><li><p>WMI has classes. What are the classes?</p>
+<pre class="language-powershell"><!-- HTML_TAG_START --><code class="language-powershell"><span class="token function">Get-CIMClass</span> <span class="token punctuation">|</span> <span class="token function">Select-Object</span> CimClassName <span class="token punctuation">|</span> <span class="token function">Export-Csv</span> classes<span class="token punctuation">.</span>csv <span class="token operator">-</span>NTI</code><!-- HTML_TAG_END --></pre></li>
+<li><p>What does that do?</p>
+<p>it saves a csv file with all the class names </p></li>
+<li><p>Cool but which heckin class do I need?</p>
+<p>this is a bit of vibes based trial and error… just search the file for what you think it will be.
+In this case I searched for “device” which returned 50 classes 😮</p>
+<p>in those 50 classes a lot of them started with Win32_PnPDevice (I think PnP means plug and play)
+so lets query that class and see what is has</p></li>
+<li><p>How do I query the class </p>
+<pre class="language-powershell"><!-- HTML_TAG_START --><code class="language-powershell"><span class="token function">Get-WmiObject</span> <span class="token operator">-</span><span class="token keyword">Class</span> <span class="token string">"Win32_PnPDevice"</span></code><!-- HTML_TAG_END --></pre>
+<p>cool now wtf is this
+<img src="/img/wmi-and-hardware-serials/wtf.jpg" alt="Screenshot of garbage powershell WMI results" title="wtf.jpg"></p>
+<p>again… I have no idea.</p></li>
+<li><p>So if that doesn’t work where next?</p>
+<p>…it’s WMI so the answer is always classes</p></li>
+<li><p>Which class?</p>
+<p>again… <em>~vibes~</em></p></li>
+<li><p>What did your vibes tell you?</p>
+<p>idk are there any USB classes?</p></li>
+<li><p>Are there USB classes?</p>
+<p><strong>yep</strong></p>
+<ul><li>CIM_USBController - might be it…</li>
+<li>Win32_USBController - might be it again…</li>
+<li>CIM_USBDevice - that could be it, I mean it is a device 🤔</li>
+<li>CIM_USBHub - I guess it is a hub</li>
+<li>Win32_USBHub - what is the difference between CIM and Win32… idk?</li>
+<li><em>and also a bunch of other junk classes</em></li></ul></li>
+<li><p>So spit it out, we only have 2 more points. Where is the serial man?</p>
+<p>its CIM_USBDevice 🥳</p></li>
+<li><p>Sweet, so how do we get it <em>~ programmatically ~</em></p>
+<pre class="language-powershell"><!-- HTML_TAG_START --><code class="language-powershell"><span class="token function">Get-WmiObject</span> <span class="token operator">-</span><span class="token keyword">Class</span> <span class="token string">"CIM_USBDevice"</span> <span class="token operator">-</span><span class="token keyword">Filter</span> <span class="token string">'PnPDeviceID like "%serial prefix%"'</span></code><!-- HTML_TAG_END --></pre>
+<p>This searches for the serial prefix in all the USB device ID’s. Obviously you will need to swap it out for your own serials prefix if you are following along at home.</p>
+<p>wow… look at that. I have 3 serials more than I need
+<img src="/img/wmi-and-hardware-serials/wmi-query.png" alt="Screenshot of powershell WMI results with lots of serial numbers" title="success.jpg"></p></li></ol>
+<br>
+<h2>cool so now that I am a powershell/WMI god how do I use this?</h2>
+<p>This is where you can get creative and do things your way. I’ll walk you through mine</p>
+<p>So my solution for getting this info remotely was this</p>
+<pre class="language-powershell"><!-- HTML_TAG_START --><code class="language-powershell"><span class="token variable">$computers</span> = <span class="token function">Import-Csv</span> input<span class="token punctuation">.</span>csv
+
+<span class="token variable">$results</span> = @<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token variable">$i</span> = 0 
+<span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$computer</span> in <span class="token variable">$computers</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token variable">$i</span><span class="token operator">++</span>
+    <span class="token function">Write-Host</span> <span class="token string">"Getting Dock for <span class="token function">$<span class="token punctuation">(</span><span class="token variable">$computer</span><span class="token punctuation">.</span>ComputerName<span class="token punctuation">)</span></span> <span class="token variable">$i</span>/<span class="token function">$<span class="token punctuation">(</span><span class="token variable">$computers</span><span class="token punctuation">.</span>Length<span class="token punctuation">)</span></span>"</span>
+    <span class="token variable">$result</span> = <span class="token string">""</span> <span class="token punctuation">|</span> <span class="token function">Select-Object</span> Computer<span class="token punctuation">,</span> IPAddress<span class="token punctuation">,</span> serial
+    <span class="token variable">$result</span><span class="token punctuation">.</span>Computer = <span class="token variable">$computer</span><span class="token punctuation">.</span>ComputerName
+    <span class="token variable">$result</span><span class="token punctuation">.</span>IPAddress = <span class="token variable">$computer</span><span class="token punctuation">.</span>IPAddress
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">Test-Connection</span> <span class="token operator">-</span>Quiet <span class="token operator">-</span>ComputerName <span class="token variable">$computer</span><span class="token punctuation">.</span>IPAddress<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token variable">$dockDevice</span> = <span class="token function">Get-WmiObject</span> <span class="token operator">-</span><span class="token keyword">Class</span> CIM_USBDevice <span class="token operator">-</span><span class="token keyword">Filter</span> <span class="token string">'PNPDeviceID like "%serial prefix%"'</span> <span class="token operator">-</span>ComputerName <span class="token variable">$computer</span><span class="token punctuation">.</span>IPAddress
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$dockDevice</span><span class="token punctuation">.</span>Name<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token variable">$dockSerial</span> = $<span class="token punctuation">(</span><span class="token variable">$dockDevice</span><span class="token punctuation">.</span>PNPDeviceID <span class="token punctuation">|</span> <span class="token function">Split-Path</span> <span class="token operator">-</span>Leaf<span class="token punctuation">)</span><span class="token punctuation">.</span>substring<span class="token punctuation">(</span>6<span class="token punctuation">)</span> 
+            <span class="token function">Write-Host</span> <span class="token string">"Dock Found <span class="token variable">$dockSerial</span>"</span>
+            <span class="token variable">$result</span><span class="token punctuation">.</span>serial = <span class="token variable">$dockSerial</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">Write-Host</span> <span class="token string">"No Dock Found"</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token variable">$results</span> <span class="token operator">+=</span> <span class="token variable">$result</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">Write-Host</span> <span class="token string">"Device Offline"</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token variable">$results</span> <span class="token punctuation">|</span> <span class="token function">export-csv</span> <span class="token operator">-</span>NoTypeInformation <span class="token string">"results.csv"</span></code><!-- HTML_TAG_END --></pre>
+<p>the way this works is I have a script that if I feed it a list of host names it returns the IP address and whether its online.</p>
+<p>the input.csv file comes from the output of the ping script and has 3 columns ComputerName, IPAddress, Ping</p>
+<p>I remove all the non VPN IP addresses from the input before running the script because I only want to get the dock serials people working from home.</p>
+<p>Finally when I run this the script will return a csv file with the Computer names, IP addresses and the dock serial numbers</p>
+<p><strong>Note - the reason I ping the computers again while the script is runs is because the computers may have gone offline since I initially got the list of computers to check and Get-WmiObject takes a long time to timeout</strong></p>
+<p><strong>Note - if you are stealing this script you will definitely need to edit the serial prefix on line 13 and also the serial clean up on line 15</strong></p>
+<br>
+<h2>Success!!!</h2>
+<p>So finally I had my list of people with docks and everyone lived happily ever after.</p>
+<p>Hopefully if you are reading this it is of some use to you or at least you learnt something. If not good luck Googling soldier</p></main>
+</div>
+
+
+		<script type="module" data-sveltekit-hydrate="pk8b28">
+		import { start } from "/_app/immutable/start-86cfb932.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="pk8b28"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [0, 6],
+				params: {},
+				routeId: "posts/wmi-and-hardware-serials"
+			}
+		});
+	</script></div>
+	</body>
+	<script src="/js/prism.js"></script>
+</html>
