@@ -163,11 +163,11 @@ the way this works is I have a script that if I feed it a list of host names it 
 
 the input.csv file comes from the output of the ping script and has 3 columns ComputerName, IPAddress, Ping
 
-I remove all the non VPN IP addresses from the input before running the script because I only want to get the dock serials people working from home.
+I remove all the non VPN IP addresses from the input before running the script because I only want to get the dock serials of people with docks at home.
 
 Finally when I run this the script will return a csv file with the Computer names, IP addresses and the dock serial numbers
 
-**Note - the reason I ping the computers again while the script is runs is because the computers may have gone offline since I initially got the list of computers to check and Get-WmiObject takes a long time to timeout**
+**Note - the reason I ping the computers again while the script runs is because the computers may have gone offline since I initially got the list of computers to check and Get-WmiObject takes a long time to timeout**
 
 **Note - if you are stealing this script you will definitely need to edit the serial prefix on line 13 and also the serial clean up on line 15**
 
