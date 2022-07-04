@@ -17,6 +17,7 @@ The problem is that due to the rush we only recorded laptop serials and missed t
 
 I searched far and wide for a solution to get the USB-C dock serials remotely but alas after venturing to the second page of Google I gave up (╯‵□′)╯︵┻━┻
 
+<br/>
 
 ## what now
 Many days went by and this problem kept taunting me; there had to be a way.
@@ -26,16 +27,153 @@ Finally I cracked and decided to investigate this myself.
 
 My first point of call... Device Manager
 
+<br/>
 
 ## adventures in device manager
-<!-- swap screenshot from lenovo laptop -->
-![Screenshot of Windows Device Manager](/img/wmi-and-hardware-serials/devmgmt.jpg "Device Manager")
+
+Stuff is a bit redacted here for  *~opsec~* so you may need to use your imagination a bit
+
+![Screenshot of Windows Device Manager](/img/wmi-and-hardware-serials/devmgmt.png "Device Manager")
 
 Great... where the hell is my dock.
 
 Fortunately there is a nicer way to look for things. Just click `View > Devices by container`
 
-<!-- swap screenshot from lenovo laptop -->
-![Screenshot of Windows Device Manager](/img/wmi-and-hardware-serials/devmgmt-container-view.jpg "Device Manager")
+![Screenshot of Windows Device Manager in Devices by container view](/img/wmi-and-hardware-serials/devmgmt-container-view.png "Device Manager > view > devices by container")
 
-Much better
+Much better. Now we are here I can see my dock much easier. It's showing up as USB-I2C bridge here but in previous driver versions it was actually showing up as the model of the dock. 
+
+Anyway after digging through the devices and their properties I discovered that the serial number of the dock was visible in the "Last known parent" field on the USB controllers and the billboard device.
+
+![Screenshot of Windows Device Manager Details tab showing my dock serial number](/img/wmi-and-hardware-serials/devmgmt-success.png "Device Manager")
+
+Cool so we know that the serial is accessible by the system somehow. I just need to work out how to do it programmatically.
+
+<br/>
+
+## doing it programmatically
+![Photo of a dog on a computer captioned I have no idea what I'm doing](/img/shared-memes/noidea.jpg "noidea.jpg")
+
+Okay Google time... "PowerShell device manager". Someone mentions WMI on Microsoft technet.
+
+I know a thing or two about WMI so I think I can do this.
+
+## **Here are 10 WMI secrets that Microsoft don't want you to know** or something, idk I don't work at buzzfeed.
+
+1. WMI has classes. What are the classes?
+    ```powershell
+    Get-CIMClass | Select-Object CimClassName | Export-Csv classes.csv -NTI
+    ```
+2. What does that do?
+   
+    it saves a csv file with all the class names 
+
+3. Cool but which heckin class do I need?
+   
+    this is a bit of vibes based trial and error... just search the file for what you think it will be.
+    In this case I searched for "device" which returned 50 classes 😮
+
+    in those 50 classes a lot of them started with Win32_PnPDevice (I think PnP means plug and play)
+    so lets query that class and see what is has
+
+4. How do I query the class 
+    ```powershell
+    Get-WmiObject -Class "Win32_PnPDevice"
+    ```
+    cool now wtf is this
+    ![Screenshot of garbage powershell WMI results](/img/wmi-and-hardware-serials/wtf.jpg "wtf.jpg")
+
+    again... I have no idea.
+
+5. So if that doesn't work where next?
+    
+    ...it's WMI so the answer is always classes
+
+6. Which class?
+
+    again... *~vibes~*
+
+7. What did your vibes tell you?
+
+    idk are there any USB classes?
+
+8. Are there USB classes?
+
+ **yep**
+
+   - CIM_USBController - might be it...
+   - Win32_USBController - might be it again...
+   - CIM_USBDevice - that could be it, I mean it is a device 🤔
+   - CIM_USBHub - I guess it is a hub
+   - Win32_USBHub - what is the difference between CIM and Win32... idk?
+   - *and also a bunch of other junk classes*
+
+9.  So spit it out, we only have 2 more points. Where is the serial man?
+
+    its CIM_USBDevice 🥳
+
+10. Sweet, so how do we get it *~ programmatically ~*
+    ```powershell
+    Get-WmiObject -Class "CIM_USBDevice" -Filter 'PnPDeviceID like "%serial prefix%"'
+    ```
+    This searches for the serial prefix in all the USB device ID's. Obviously you will need to swap it out for your own serials prefix if you are following along at home.
+
+    wow... look at that. I have 3 serials more than I need
+    ![Screenshot of powershell WMI results with lots of serial numbers](/img/wmi-and-hardware-serials/wmi-query.png "success.jpg")
+
+<br/>
+
+## cool so now that I am a powershell/WMI god how do I use this?
+
+This is where you can get creative and do things your way. I'll walk you through mine
+
+So my solution for getting this info remotely was this
+
+```powershell
+$computers = Import-Csv input.csv
+
+$results = @()
+$i = 0 
+foreach ($computer in $computers)
+{
+    $i++
+    Write-Host "Getting Dock for $($computer.ComputerName) $i/$($computers.Length)"
+    $result = "" | Select-Object Computer, IPAddress, serial
+    $result.Computer = $computer.ComputerName
+    $result.IPAddress = $computer.IPAddress
+    if(Test-Connection -Quiet -ComputerName $computer.IPAddress) {
+        $dockDevice = Get-WmiObject -Class CIM_USBDevice -Filter 'PNPDeviceID like "%serial prefix%"' -ComputerName $computer.IPAddress
+        if($dockDevice.Name) {
+            $dockSerial = $($dockDevice.PNPDeviceID | Split-Path -Leaf).substring(6) 
+            Write-Host "Dock Found $dockSerial"
+            $result.serial = $dockSerial
+        } else {
+            Write-Host "No Dock Found"
+        }
+        $results += $result
+    } else {
+        Write-Host "Device Offline"
+    }
+}
+
+$results | export-csv -NoTypeInformation "results.csv"
+```
+
+the way this works is I have a script that if I feed it a list of host names it returns the IP address and whether its online.
+
+the input.csv file comes from the output of the ping script and has 3 columns ComputerName, IPAddress, Ping
+
+I remove all the non VPN IP addresses from the input before running the script because I only want to get the dock serials people working from home.
+
+Finally when I run this the script will return a csv file with the Computer names, IP addresses and the dock serial numbers
+
+**Note - the reason I ping the computers again while the script is runs is because the computers may have gone offline since I initially got the list of computers to check and Get-WmiObject takes a long time to timeout**
+
+**Note - if you are stealing this script you will definitely need to edit the serial prefix on line 13 and also the serial clean up on line 15**
+
+<br/>
+
+## Success!!!
+So finally I had my list of people with docks and everyone lived happily ever after.
+
+Hopefully if you are reading this it is of some use to you or at least you learnt something. If not good luck Googling soldier
