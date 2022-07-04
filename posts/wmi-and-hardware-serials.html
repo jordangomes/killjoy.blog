@@ -10,11 +10,11 @@
 	<link rel="stylesheet" href="/_app/immutable/assets/pages/__layout.svelte-c95ae0f1.css">
 	<link rel="stylesheet" href="/_app/immutable/assets/post-1fa17be0.css">
 	<link rel="stylesheet" href="/_app/immutable/assets/header-100ca74d.css">
-	<link rel="modulepreload" href="/_app/immutable/start-86cfb932.js">
+	<link rel="modulepreload" href="/_app/immutable/start-40a9edb7.js">
 	<link rel="modulepreload" href="/_app/immutable/chunks/index-6be2d9ac.js">
 	<link rel="modulepreload" href="/_app/immutable/chunks/preload-helper-60cab3ee.js">
 	<link rel="modulepreload" href="/_app/immutable/pages/__layout.svelte-4818e10e.js">
-	<link rel="modulepreload" href="/_app/immutable/pages/posts/wmi-and-hardware-serials.svx-6ac0d5dc.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/posts/wmi-and-hardware-serials.svx-b7c6401a.js">
 	<link rel="modulepreload" href="/_app/immutable/chunks/post-6c236dfd.js">
 	<link rel="modulepreload" href="/_app/immutable/chunks/header-89bc0213.js">
 	</head>
@@ -129,9 +129,9 @@ so lets query that class and see what is has</p></li>
 <span class="token variable">$results</span> <span class="token punctuation">|</span> <span class="token function">export-csv</span> <span class="token operator">-</span>NoTypeInformation <span class="token string">"results.csv"</span></code><!-- HTML_TAG_END --></pre>
 <p>the way this works is I have a script that if I feed it a list of host names it returns the IP address and whether its online.</p>
 <p>the input.csv file comes from the output of the ping script and has 3 columns ComputerName, IPAddress, Ping</p>
-<p>I remove all the non VPN IP addresses from the input before running the script because I only want to get the dock serials people working from home.</p>
+<p>I remove all the non VPN IP addresses from the input before running the script because I only want to get the dock serials of people with docks at home.</p>
 <p>Finally when I run this the script will return a csv file with the Computer names, IP addresses and the dock serial numbers</p>
-<p><strong>Note - the reason I ping the computers again while the script is runs is because the computers may have gone offline since I initially got the list of computers to check and Get-WmiObject takes a long time to timeout</strong></p>
+<p><strong>Note - the reason I ping the computers again while the script runs is because the computers may have gone offline since I initially got the list of computers to check and Get-WmiObject takes a long time to timeout</strong></p>
 <p><strong>Note - if you are stealing this script you will definitely need to edit the serial prefix on line 13 and also the serial clean up on line 15</strong></p>
 <br>
 <h2>Success!!!</h2>
@@ -140,10 +140,10 @@ so lets query that class and see what is has</p></li>
 </div>
 
 
-		<script type="module" data-sveltekit-hydrate="pk8b28">
-		import { start } from "/_app/immutable/start-86cfb932.js";
+		<script type="module" data-sveltekit-hydrate="h0unj7">
+		import { start } from "/_app/immutable/start-40a9edb7.js";
 		start({
-			target: document.querySelector('[data-sveltekit-hydrate="pk8b28"]').parentNode,
+			target: document.querySelector('[data-sveltekit-hydrate="h0unj7"]').parentNode,
 			paths: {"base":"","assets":""},
 			session: {},
 			route: true,
