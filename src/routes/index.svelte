@@ -37,7 +37,7 @@
 <svelte:head>
 	<title>killjoy - home</title>
 	<meta property="og:title" content="killjoy.blog">
-	<meta property="og:description" content="are you ready to take the red pill">
+	<meta property="og:description" content="A technical blog by Jordan Gomes">
 	<meta property="og:type" content="article"/>
 	<meta property="og:image" content="https://killjoy.blog/img/banner.jpg">
 	<meta property="og:url" content="https://killjoy.blog/">
