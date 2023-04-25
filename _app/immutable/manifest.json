@@ -1,10 +1,10 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-b4e7acc2.js",
+    "file": "start-c1771a4d.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
-      "_index-6be2d9ac.js",
+      "_index-04d86324.js",
       "_preload-helper-60cab3ee.js"
     ],
     "dynamicImports": [
@@ -13,53 +13,55 @@
       "src/routes/404.svx",
       "src/routes/index.svelte",
       "src/routes/posts/index.svelte",
+      "src/routes/posts/reseting-outlook-profiles.svx",
       "src/routes/posts/what-is-killjoy.svx",
       "src/routes/posts/wmi-and-hardware-serials.svx"
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-4818e10e.js",
+    "file": "pages/__layout.svelte-f845330c.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-6be2d9ac.js"
+      "_index-04d86324.js"
     ],
     "css": [
       "assets/pages/__layout.svelte-c95ae0f1.css"
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
-    "file": "error.svelte-3e2360ab.js",
+    "file": "error.svelte-16ae2406.js",
     "src": ".svelte-kit/runtime/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-6be2d9ac.js"
+      "_index-04d86324.js"
     ]
   },
   "src/routes/404.svx": {
-    "file": "pages/404.svx-1a196409.js",
+    "file": "pages/404.svx-ff29d75d.js",
     "src": "src/routes/404.svx",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-6be2d9ac.js",
-      "_post-6c236dfd.js",
-      "_header-89bc0213.js"
+      "_index-04d86324.js",
+      "_post-c2969b07.js",
+      "_header-672d604a.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-d2930e7d.js",
+    "file": "pages/index.svelte-f75a7250.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_preload-helper-60cab3ee.js",
-      "_index-6be2d9ac.js",
-      "_articlepreview-fefd6a00.js"
+      "_index-04d86324.js",
+      "_articlepreview-d74d4528.js"
     ],
     "dynamicImports": [
+      "src/routes/posts/reseting-outlook-profiles.svx",
       "src/routes/posts/what-is-killjoy.svx",
       "src/routes/posts/wmi-and-hardware-serials.svx"
     ],
@@ -68,17 +70,18 @@
     ]
   },
   "src/routes/posts/index.svelte": {
-    "file": "pages/posts/index.svelte-3e83df27.js",
+    "file": "pages/posts/index.svelte-5447e3f3.js",
     "src": "src/routes/posts/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_preload-helper-60cab3ee.js",
-      "_index-6be2d9ac.js",
-      "_articlepreview-fefd6a00.js",
-      "_header-89bc0213.js"
+      "_index-04d86324.js",
+      "_articlepreview-d74d4528.js",
+      "_header-672d604a.js"
     ],
     "dynamicImports": [
+      "src/routes/posts/reseting-outlook-profiles.svx",
       "src/routes/posts/what-is-killjoy.svx",
       "src/routes/posts/wmi-and-hardware-serials.svx"
     ],
@@ -86,57 +89,71 @@
       "assets/pages/posts/index.svelte-27ac0a92.css"
     ]
   },
+  "src/routes/posts/reseting-outlook-profiles.svx": {
+    "file": "pages/posts/reseting-outlook-profiles.svx-90d8f95e.js",
+    "src": "src/routes/posts/reseting-outlook-profiles.svx",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-04d86324.js",
+      "_post-c2969b07.js",
+      "_header-672d604a.js"
+    ],
+    "css": [
+      "assets/pages/posts/reseting-outlook-profiles.svx-8631dfcb.css"
+    ]
+  },
   "src/routes/posts/what-is-killjoy.svx": {
-    "file": "pages/posts/what-is-killjoy.svx-2deda21b.js",
+    "file": "pages/posts/what-is-killjoy.svx-0bc31bfc.js",
     "src": "src/routes/posts/what-is-killjoy.svx",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-6be2d9ac.js",
-      "_post-6c236dfd.js",
-      "_header-89bc0213.js"
+      "_index-04d86324.js",
+      "_post-c2969b07.js",
+      "_header-672d604a.js"
     ]
   },
   "src/routes/posts/wmi-and-hardware-serials.svx": {
-    "file": "pages/posts/wmi-and-hardware-serials.svx-b7c6401a.js",
+    "file": "pages/posts/wmi-and-hardware-serials.svx-c496ece3.js",
     "src": "src/routes/posts/wmi-and-hardware-serials.svx",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-6be2d9ac.js",
-      "_post-6c236dfd.js",
-      "_header-89bc0213.js"
+      "_index-04d86324.js",
+      "_post-c2969b07.js",
+      "_header-672d604a.js"
     ]
   },
-  "_index-6be2d9ac.js": {
-    "file": "chunks/index-6be2d9ac.js"
+  "_index-04d86324.js": {
+    "file": "chunks/index-04d86324.js"
   },
   "_preload-helper-60cab3ee.js": {
     "file": "chunks/preload-helper-60cab3ee.js"
   },
-  "_post-6c236dfd.js": {
-    "file": "chunks/post-6c236dfd.js",
+  "_post-c2969b07.js": {
+    "file": "chunks/post-c2969b07.js",
     "imports": [
-      "_index-6be2d9ac.js",
-      "_header-89bc0213.js"
+      "_index-04d86324.js",
+      "_header-672d604a.js"
     ],
     "css": [
       "assets/post-1fa17be0.css"
     ]
   },
-  "_header-89bc0213.js": {
-    "file": "chunks/header-89bc0213.js",
+  "_header-672d604a.js": {
+    "file": "chunks/header-672d604a.js",
     "imports": [
-      "_index-6be2d9ac.js"
+      "_index-04d86324.js"
     ],
     "css": [
       "assets/header-100ca74d.css"
     ]
   },
-  "_articlepreview-fefd6a00.js": {
-    "file": "chunks/articlepreview-fefd6a00.js",
+  "_articlepreview-d74d4528.js": {
+    "file": "chunks/articlepreview-d74d4528.js",
     "imports": [
-      "_index-6be2d9ac.js"
+      "_index-04d86324.js"
     ],
     "css": [
       "assets/articlepreview-815a1a13.css"
