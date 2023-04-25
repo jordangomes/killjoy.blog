@@ -1,0 +1,41 @@
+---
+posted: 2023-04-25T03:00:00Z
+title: how to reset your outlook profile
+subtitle: the simplest way to fix most outlook issues
+slug: reseting-outlook-profiles
+thumbnail: /img/reseting-outlook-profiles/thumbnail.png
+banner: /img/reseting-outlook-profiles/banner.png
+---
+
+<script>
+	import Fa from 'svelte-fa'
+    import { faWindows } from '@fortawesome/free-brands-svg-icons';
+</script>
+
+
+## why?
+Resetting your outlook profile can fix many outlook issues. Anthing from Oulook not loading to a plethora of weird bugs.  
+
+## alright how do I do it?
+1. Close outlook entirely, every window must go
+2. On your keyboard press **<Fa icon={faWindows} /> + R** to open the run window  
+3. In the Open box type **"outlook.exe /profiles"** and press **Enter** or click okay  
+![the Windows run dialog](/img/reseting-outlook-profiles/runWindow.png "Windows Run dialog")  
+
+4. On the Choose Profile screen click **Options** then click **New**  
+![the Outlook Choose Profile dialog with Options and new highlighted](/img/reseting-outlook-profiles/chooseProfile2.png "Outlook Choose Profile dialog with Options and new highlighted")  
+
+5. On the New Profile screen **enter a profile name** *(I usually go with New but put whatever you want)* then press **OK**  
+![the Outlook New Profile dialog with the word new in the profile name field and the OK button higlighted](/img/reseting-outlook-profiles/newProfile.png "Outlook New Profile dialog")  
+
+6. You should be presented with this setup screen from here you can proceed to sign in with your outlook account as usual.  
+![the Outlook Login Screen with an email address typed in and a connect button](/img/reseting-outlook-profiles/OutlookLoginScreen.png "Outlook Login Screen")  
+
+7. Once you have added your account you should see a screen like this. **Uncheck** "Setup Outlook on my phone, too" and then press **Done**  
+![the Outlook Account Successfully added screen with the Setup Outlook on my phone, too checkbox underlined](/img/reseting-outlook-profiles/OutlookAccountAddedScreen.png "Outlook Account Successfully Added")  
+
+8. Finally back at the Choose Profile screen make sure the new profile we created is selected, check **Set as default profile** and click **OK**  
+![the Outlook Choose Profile dialog with set as default profile checked](/img/reseting-outlook-profiles/OutlookChooseProfileSetAsDefault.png "Outlook Choose Profile dialog")  
+
+9. That's it your outlook profile is reset. Give it a bit to load.  
+*Maybe grab a Coffee, Tea, Beer, or Whiskey while you wait. I won't judge.*
